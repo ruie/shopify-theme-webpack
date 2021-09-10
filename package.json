@@ -1,0 +1,28 @@
+{
+	"name": "shopify-theme-webpack",
+	"version": "1.0.0",
+	"description": "Moderns Shopify development theme workflow",
+	"main": "webpack.config.js",
+	"scripts": {
+		"start": "NODE_ENV=development webpack --watch",
+		"build": "webpack",
+		"deploy": "webpack && theme deploy"
+	},
+	"author": "Ruie Dela Pena",
+	"license": "MIT",
+	"devDependencies": {
+		"autoprefixer": "^10.3.4",
+		"clean-webpack-plugin": "^4.0.0",
+		"copy-webpack-plugin": "^9.0.1",
+		"css-loader": "^6.2.0",
+		"mini-css-extract-plugin": "^2.2.2",
+		"postcss-loader": "^6.1.1",
+		"webpack": "^5.52.0",
+		"webpack-bundle-analyzer": "^4.4.2",
+		"webpack-cli": "^4.8.0"
+	},
+	"browserslist": [
+		"defaults",
+		"not IE 9"
+	]
+}
