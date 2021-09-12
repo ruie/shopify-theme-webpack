@@ -1,1 +1,1 @@
-import "./sections/footer/style.css";
+import "./sections/footer/styles.css";

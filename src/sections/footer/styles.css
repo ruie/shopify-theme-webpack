@@ -1,0 +1,33 @@
+body {
+    color: pink;
+    display: grid;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.test {
+    display: block;
+
+    &-grid {
+        display: grid;
+    }
+}
+
+@media (min-width: 50rem) {
+
+    main {
+        width: 40em;
+    }
+
+}
+
+@media (min-width: 50rem) {
+
+    #menu {
+        width: 30em;
+    }
+
+}
