@@ -50,12 +50,21 @@ module.exports = {
 					to: "assets/[name][ext]",
 				},
 				{
-					from: "src/sections/**/index.liquid",
-					to: "sections/[name][ext]",
-				},
-				{
 					from: "src/snippets/**/*.liquid",
 					to: "snippets/[name][ext]",
+				},
+				{
+					from: "src/sections/**/*.liquid",
+					to({ context, absoluteFilename }) {
+						const fileName = absoluteFilename
+							.split("/")
+							.reverse()[1];
+						if (fileName === "sections") {
+							return "sections/[name][ext]";
+						} else {
+							return `sections/${fileName}[ext]`;
+						}
+					},
 				},
 			],
 		}),
