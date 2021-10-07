@@ -2,16 +2,27 @@
   <ul class="main-menu__list">
   {% for link in linklists.main-menu.links %}
     <li class="main-menu__item">
-      <a href="{{ link.url }}" class="font-bold text-blue-900" @click.prevent="open" @key.escape="close" @click.away="close">
+      <a href="{{ link.url }}" class="font-bold text-blue-900" @click.prevent="open">
         {{ link.title | escape }}
       </a>
       {% if link.levels >= 1 %}
-        <ul class="sub-menu__list" x-show="isOpen" x-cloak>
+        <ul class="sub-menu__list" x-show="isOpen" @click.outside="close" x-cloak>
           {% for sub_link in link.links %}
             <li class="sub-menu__item">
               <a href="{{ sub_link.url }}">
                 {{ sub_link.title | escape }}
               </a>
+              {% if link.levels >= 2 %}
+                <ul class="sub-menu__list" x-show="isOpen" @click.outside="close" x-cloak>
+                  {% for sub_link in link.links %}
+                    <li class="sub-menu__item">
+                      <a href="{{ sub_link.url }}">
+                        {{ sub_link.title | escape }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
             </li>
           {% endfor %}
         </ul>
@@ -20,3 +31,52 @@
     {% endfor %}
   </ul>
 </nav>
+
+<ul class="menu">
+  
+{% for link in linklists.main-menu.links %}
+    
+<li class="menu-link">
+      
+<a href="{{ link.url }}">{{ link.title }}</a>
+      
+{% if link.links.size > 0 %}
+        
+<ul class="menu dropdown-child">
+          
+{% for child_link in link.links %}
+            
+<li class="menu-link">
+              
+<a href="{{ child_link.url }}">{{ child_link.title }}</a>
+              
+{% if child_link.links.size > 0 %}
+                
+<ul class="menu dropdown-grandchild">
+                  
+{% for grandchild_link in child_link.links %}
+                    
+<li class="menu-link">
+                      
+<a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                    
+</li>
+                  
+{% endfor %}
+                
+</ul>
+              
+{% endif %}
+            
+</li>
+          
+{% endfor %}
+        
+</ul>
+      
+{% endif %}
+    
+</li>
+  
+{% endfor %}
+</ul>
