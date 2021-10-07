@@ -1,0 +1,19 @@
+.header-wrapper {}
+
+.header {
+	@apply flex justify-between;
+}
+
+.main-menu {
+	
+	&__list {
+		@apply flex space-x-6;
+	}
+
+	&__item {}
+}
+
+.sub-menu {
+	&__list {}
+	&__item {}
+}

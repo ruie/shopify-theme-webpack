@@ -1,9 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-[x-cloak] {
-	@apply hidden;
-}
+@import 'section.header.css';
 
 .dropdown-trigger {
   @apply inline-block px-4 py-2 text-white bg-purple-700 rounded-md;
@@ -16,5 +15,3 @@
 .dropdown-item {
   @apply relative flex items-center px-2 py-1 text-gray-800;
 }
-
-@import "tailwindcss/utilities";

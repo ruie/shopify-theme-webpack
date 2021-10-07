@@ -15,6 +15,14 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
+    <style>
+      [x-cloak] { display: none !important; }
+    </style>
+
+    <script>
+      window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"><\/script>');
+    </script>
+
     {{ 'bundle.css' | asset_url | stylesheet_tag }}
     {{ content_for_header }}
   </head>

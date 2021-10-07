@@ -2,7 +2,6 @@ import Alpine from "alpinejs";
 import "lazysizes";
 
 import "./css/main.css";
-import "./css/header.css";
 
 window.Alpine = Alpine;
 // Register Alpine stores

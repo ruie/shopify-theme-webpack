@@ -1,0 +1,22 @@
+<nav class="main-menu" x-data="dropdown">
+  <ul class="main-menu__list">
+  {% for link in linklists.main-menu.links %}
+    <li class="main-menu__item">
+      <a href="{{ link.url }}" class="font-bold text-blue-900" @click.prevent="open" @key.escape="close" @click.away="close">
+        {{ link.title | escape }}
+      </a>
+      {% if link.levels >= 1 %}
+        <ul class="sub-menu__list" x-show="isOpen" x-cloak>
+          {% for sub_link in link.links %}
+            <li class="sub-menu__item">
+              <a href="{{ sub_link.url }}">
+                {{ sub_link.title | escape }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</nav>

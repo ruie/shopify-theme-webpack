@@ -1,9 +1,9 @@
 <div class="container">
-  <a href="{{ routes.root_url }}">
-    Logo
-  </a>
+  <header class="header">
 
-  {% render 'layout-menu' %}
+  <a href="{{ routes.root_url }}">GAIA Skin Naturals</a>
+
+  {% render 'main-menu' %}
 
   <div>
     {% if shop.customer_accounts_enabled %}
@@ -22,11 +22,15 @@
       {{ 'action.cart' | t }}
     </a>
   </div>
+  </header>
 </div>
+
 
 {% schema %}
 {
   "name": "t:sections.header.name",
+  "tag": "section",
+  "class": "header-wrapper",
   "settings": [
     {
       "type": "paragraph",

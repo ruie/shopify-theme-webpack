@@ -1,7 +1,7 @@
-<div class="{{ class | default: '' }}" style="{{ style | default: '' }}">
+<nav class="{{ class | default: '' }}" style="{{ style | default: '' }}">
   {% for link in linklists.main-menu.links %}
     <div>
-      <a href="{{ link.url }}">
+      <a href="{{ link.url }}" class="font-bold text-blue-900">
         {{ link.title | escape }}
       </a>
 
@@ -16,4 +16,4 @@
       {% endif %}
     </div>
   {% endfor %}
-</div>
+</nav>
