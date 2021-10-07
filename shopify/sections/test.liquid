@@ -1,0 +1,21 @@
+<div x-data="dropdown()">
+	<button class="dropdown-trigger" id="open-color-menu" x-spread="trigger">
+		Open Dropdown
+	</button>
+	<div class="dropdown-list" id="color-menu" x-spread="dropdown" x-cloak>
+		<a href="#" class="dropdown-item">Red</a>
+		<a href="#" class="dropdown-item">Blue</a>
+		<a href="#" class="dropdown-item">Green</a>
+	</div>
+</div>
+
+<div x-data="counter" class="box-counter">
+	<span class="lbl-counter" 
+		:class="{'lbl-counter-red': count < 0, 'lbl-counter-blue': count > 0}"
+		x-text="count">0</span>
+	<div class="">
+		<button type="button" class="btn-counter" @click="increment"> Increment </button>
+		<button type="button" class="btn-counter" @click="reset">Reset</button>
+		<button type="button" class="btn-counter" @click="decrement"> Decrement </button>
+	</div>
+</div>

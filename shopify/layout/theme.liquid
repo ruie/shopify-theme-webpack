@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
+
+    <title>{{ page_title | escape }}</title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ 'bundle.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
+      {% section 'header' %}
+
+      <main id="main" role="main">
+        {{ content_for_layout }}
+      </main>
+
+      {% section 'footer' %}
+    </div>
+
+    <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        Alpine.store('cart').initialize({{ cart | json }});
+      });
+    </script>
+    <script>
+      window.routes = {
+        cart_url: '{{ routes.cart_url }}',
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_clear_url: '{{ routes.cart_clear_url }}'
+      }
+      window.cartStrings = {
+        error: `{{ 'sections.cart.cart_error' | t }}`,
+        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t }}`
+      }
+      window.variantStrings = {
+        addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+        soldOut: `{{ 'products.product.sold_out' | t }}`,
+        unavailable: `{{ 'products.product.unavailable' | t }}`,
+      }
+    </script>
+  </body>
+</html>

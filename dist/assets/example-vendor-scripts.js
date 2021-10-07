@@ -1,1 +1,0 @@
-class Test{render(){console.log("test")}}

@@ -1,0 +1,20 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+[x-cloak] {
+	@apply hidden;
+}
+
+.dropdown-trigger {
+  @apply inline-block px-4 py-2 text-white bg-purple-700 rounded-md;
+}
+
+.dropdown-list {
+  @apply absolute z-10 flex flex-col w-56 p-2 bg-white border border-gray-200 border-solid rounded shadow-md;
+}
+
+.dropdown-item {
+  @apply relative flex items-center px-2 py-1 text-gray-800;
+}
+
+@import "tailwindcss/utilities";
