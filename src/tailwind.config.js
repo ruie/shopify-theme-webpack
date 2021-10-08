@@ -10,7 +10,22 @@ module.exports = {
 	mode: "jit",
 	darkMode: false,
 	theme: {
-		extend: {},
+		extend: {
+			animation: {
+				dropmenu: "dropmenu 100ms ease",
+			},
+			keyframes: {
+				dropmenu: {
+					"0%": {
+						opacity: 0,
+						transform: "translateY(-0.3rem)",
+					},
+					"100%": {
+						transform: "translateY(0)",
+					},
+				},
+			},
+		},
 		container: {
 			center: true,
 			padding: "1rem",
