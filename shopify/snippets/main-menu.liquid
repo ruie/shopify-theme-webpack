@@ -1,82 +1,43 @@
-<nav class="main-menu" x-data="dropdown">
-  <ul class="main-menu__list">
-  {% for link in linklists.main-menu.links %}
-    <li class="main-menu__item">
-      <a href="{{ link.url }}" class="font-bold text-blue-900" @click.prevent="open">
-        {{ link.title | escape }}
-      </a>
-      {% if link.levels >= 1 %}
-        <ul class="sub-menu__list" x-show="isOpen" @click.outside="close" x-cloak>
-          {% for sub_link in link.links %}
-            <li class="sub-menu__item">
-              <a href="{{ sub_link.url }}">
-                {{ sub_link.title | escape }}
-              </a>
-              {% if link.levels >= 2 %}
-                <ul class="sub-menu__list" x-show="isOpen" @click.outside="close" x-cloak>
-                  {% for sub_link in link.links %}
-                    <li class="sub-menu__item">
-                      <a href="{{ sub_link.url }}">
-                        {{ sub_link.title | escape }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
+<nav class="main-menu">
+	<ul class="main-menu__list">
+		{% for link in linklists.main-menu.links %}
+		{% if link.links.size > 0 %}
+			<li class="main-menu__item" x-data="dropdown">
+				<a class="main-menu__dropdown" href="{{ link.url }}" @click.prevent="toggle">
+					<span>{{ link.title }}</span>
+					{% render 'icon-caret' %}
+				</a>
+				<ul x-cloak class="main-dropmenu" x-show="isOpen" @click.outside="close">
+					{% for child_link in link.links %}
+						{% if child_link.links.size > 0 %}
+							<li class="main-dropmenu__item" x-data="dropdown">
+								<a class="main-dropmenu__link" href="{{ child_link.url }}" @click.prevent="toggle">
+									<span>{{ child_link.title }}</span>
+									{% render 'icon-caret' %}
+								</a>
+								<ul x-cloak class="main-submenu" x-show="isOpen">
+									{% for grandchild_link in child_link.links %}
+									<li class="main-submenu__item">
+										<a class="main-submenu__link" href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+									</li>
+									{% endfor %}
+								</ul>
+							</li>
+						{% else %}
+							<li class="main-dropmenu__item">
+								<a class="main-dropmenu__link" href="{{ child_link.url }}">
+									<span>{{ child_link.title }}</span>
+								</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</li>
+			{% else %}
+			<li class="main-menu__item">
+				<a class="main-menu__link" href="{{ link.url }}">{{ link.title }}</a>
+			</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
 </nav>
-
-<ul class="menu">
-  
-{% for link in linklists.main-menu.links %}
-    
-<li class="menu-link">
-      
-<a href="{{ link.url }}">{{ link.title }}</a>
-      
-{% if link.links.size > 0 %}
-        
-<ul class="menu dropdown-child">
-          
-{% for child_link in link.links %}
-            
-<li class="menu-link">
-              
-<a href="{{ child_link.url }}">{{ child_link.title }}</a>
-              
-{% if child_link.links.size > 0 %}
-                
-<ul class="menu dropdown-grandchild">
-                  
-{% for grandchild_link in child_link.links %}
-                    
-<li class="menu-link">
-                      
-<a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                    
-</li>
-                  
-{% endfor %}
-                
-</ul>
-              
-{% endif %}
-            
-</li>
-          
-{% endfor %}
-        
-</ul>
-      
-{% endif %}
-    
-</li>
-  
-{% endfor %}
-</ul>

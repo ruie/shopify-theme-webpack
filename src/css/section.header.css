@@ -10,10 +10,52 @@
 		@apply flex space-x-6;
 	}
 
-	&__item {}
+	&__item {
+		@apply relative;
+	}
+
+	&__link {
+		@apply relative font-bold text-green-500 uppercase hover:border-b-2 hover:border-green-500;
+	}
+
+	&__dropdown {
+		@apply relative pr-5 font-bold text-green-500 uppercase hover:border-b-2 hover:border-green-500;
+	}
+
+	.icon-caret {
+		@apply absolute right-0;
+		height: 0.45rem;
+		top: calc(50% - 0.15rem);
+	}
 }
 
-.sub-menu {
-	&__list {}
-	&__item {}
+.main-dropmenu {
+	@apply absolute min-w-full py-2 mt-2 border-2 border-green-500 w-52 -left-3;
+
+	&__item {
+		@apply relative;
+	}
+
+	&__link {
+		@apply relative block my-2 ml-4 mr-4;
+	}
+
+	.icon-caret {
+		position: absolute;
+		right: 0rem;
+		height: 0.45rem;
+		top: calc(50% - 0.15rem);
+	}
+}
+
+.main-submenu {
+	@apply bg-[#f7fbfb];
+
+	&__item {
+	}
+
+	&__link {
+		@apply block py-2 pl-6 pr-4;
+	}
+
 }

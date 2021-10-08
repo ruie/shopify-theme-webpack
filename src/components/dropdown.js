@@ -2,15 +2,15 @@ export default {
 	name: "dropdown",
 	component() {
 		return {
-			show: false,
-			open() {
-				this.show = true;
+			open: false,
+			isOpen() {
+				return this.open === true;
+			},
+			toggle() {
+				this.open = !this.open;
 			},
 			close() {
-				this.show = false;
-			},
-			isOpen() {
-				return this.show === true;
+				this.open = false;
 			},
 		};
 	},
