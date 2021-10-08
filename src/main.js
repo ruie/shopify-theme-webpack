@@ -8,16 +8,14 @@ window.Alpine = Alpine;
 const alpineStores = require.context("./stores/", true, /\.js$/);
 alpineStores.keys().forEach((key) => {
 	const store = alpineStores(key).default;
-	const name = store.name;
-	Alpine.store(name, store.store());
+	Alpine.store(store.name, store.store());
 });
 
 // Register Alpine components
 const alpineComponents = require.context("./components/", true, /\.js$/);
 alpineComponents.keys().forEach((key) => {
 	const component = alpineComponents(key).default;
-	const name = component.name;
-	Alpine.data(name, component.component);
+	Alpine.data(component.name, component.component);
 });
 
 Alpine.start();
