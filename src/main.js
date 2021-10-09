@@ -1,21 +1,19 @@
-import Alpine from "alpinejs";
+// import Alpine from "alpinejs";
+import "@ryangjchandler/spruce";
+import "alpinejs";
+import "alpinejs/dist/alpine-ie11";
+
 import "lazysizes";
 
 import "./css/main.css";
 
-window.Alpine = Alpine;
-// Register Alpine stores
-const alpineStores = require.context("./stores/", true, /\.js$/);
-alpineStores.keys().forEach((key) => {
-	const store = alpineStores(key).default;
-	Alpine.store(store.name, store.store());
-});
+import MainMenu from "./components/MainMenu";
+import MobileMenu from "./stores/MobileMenu";
 
-// Register Alpine components
-const alpineComponents = require.context("./components/", true, /\.js$/);
-alpineComponents.keys().forEach((key) => {
-	const component = alpineComponents(key).default;
-	Alpine.data(component.name, component.component);
-});
+// window.Spruce.store("modal", {
+// 	modalOpen: "login",
+// 	content: null,
+// });
 
-Alpine.start();
+window["mainmenu"] = MainMenu;
+window["mobilemenu"] = MobileMenu;

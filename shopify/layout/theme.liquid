@@ -35,15 +35,18 @@
         {{ content_for_layout }}
       </main>
 
+	<div x-data="mobilemenu()">
+		<div x-spread="dialogue" x-cloak>
+			<p>
+				This "register" modal isn't built with a11y in mind, don't actually use it
+			</p>
+		</div>
+	</div>
+
       {% section 'footer' %}
     </div>
 
     <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        Alpine.store('cart').initialize({{ cart | json }});
-      });
-    </script>
     <script>
       window.routes = {
         cart_url: '{{ routes.cart_url }}',

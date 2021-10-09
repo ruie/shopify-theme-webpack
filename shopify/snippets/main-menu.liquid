@@ -2,20 +2,20 @@
 	<ul class="main-menu__list">
 		{% for link in linklists.main-menu.links %}
 		{% if link.links.size > 0 %}
-			<li class="main-menu__item" x-data="dropdown">
-				<a class="main-menu__dropdown" href="{{ link.url }}" @click.prevent="toggle">
+			<li class="main-menu__item" x-data="mainmenu()">
+				<button class="main-menu__dropdown" href="{{ link.url }}" x-spread="trigger">
 					<span>{{ link.title }}</span>
 					{% render 'icon-caret' %}
-				</a>
-				<ul x-cloak class="main-dropmenu" x-show="isOpen" @click.outside="close">
+				</button>
+				<ul x-cloak class="main-dropmenu" x-spread="dialogue">
 					{% for child_link in link.links %}
 						{% if child_link.links.size > 0 %}
-							<li class="main-dropmenu__item" x-data="dropdown">
-								<a class="main-dropmenu__link" href="{{ child_link.url }}" @click.prevent="toggle">
+							<li class="main-dropmenu__item" x-data="mainmenu()">
+								<button class="main-dropmenu__link" href="{{ child_link.url }}" x-spread="trigger">
 									<span>{{ child_link.title }}</span>
 									{% render 'icon-caret' %}
-								</a>
-								<ul x-cloak class="main-submenu" x-show="isOpen">
+								</button>
+								<ul x-cloak class="main-submenu" x-spread="dialogue">
 									{% for grandchild_link in child_link.links %}
 									<li class="main-submenu__item">
 										<a class="main-submenu__link" href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
@@ -41,3 +41,7 @@
 		{% endfor %}
 	</ul>
 </nav>
+
+<div x-data="mobilemenu()">
+	<button x-spread="trigger">Test</button>
+</div>

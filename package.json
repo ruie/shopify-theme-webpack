@@ -22,9 +22,10 @@
 		"fix:shopify": "cd shopify && shopify theme check -a"
 	},
 	"dependencies": {
+		"@ryangjchandler/spruce": "^2.7.1",
 		"@tailwindcss/aspect-ratio": "^0.3.0",
 		"@tailwindcss/forms": "^0.3.4",
-		"alpinejs": "^3.4.2",
+		"alpinejs": "2.8.2",
 		"lazysizes": "^5.3.2",
 		"tailwindcss": "^2.2.15"
 	},
